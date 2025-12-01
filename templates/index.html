@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ticket Booking</title>
+
+    <!-- You requested this format -->
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="brand">Sliver<span class="accent">Screen</span></div>
+    </header>
+
+    <main class="container">
+        <!-- Slider -->
+        <section class="slider" id="hero-slider">
+            <div class="slides">
+                {% for b in banners %}
+                <div class="slide">
+                    <img src="/static/{{ b }}" alt="banner">
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="dots" id="slider-dots"></div>
+        </section>
+
+        <!-- Movies -->
+        <section class="movies">
+            <h2>Now Showing</h2>
+
+            <div class="grid">
+                {% for movie in movies %}
+                <article class="card">
+                    <img src="../static/{{ movie.poster }}" alt="{{ movie.title }}">
+
+                    <div class="card-body">
+                        <h3>{{ movie.title }}</h3>
+                        <p class="truncate">{{ movie.description }}</p>
+
+                        <div class="card-actions">
+                            <a class="btn" href="/movie/{{ movie.id }}">Details</a>
+                            <a class="btn outline" href="/booking/{{ movie.id }}">Book</a>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        </section>
+        <!-- Chatbot -->
+        <div id="chatbot">
+            <div id="chatbot-header">
+                Chat with us
+                <button id="closeChat" class="close-btn">✖</button>
+            </div>
+            <div id="chatbot-body">
+                <div id="messages"></div>
+            </div>
+            <div id="chatbot-input">
+                <input type="text" id="userInput" placeholder="Ask me about movies, bookings..." />
+                <button id="sendBtn">Send</button>
+            </div>
+        </div>
+        
+        <!-- Toggle Button -->
+        <button id="chatToggle" class="chat-toggle-btn">💬</button>
+
+
+
+    </main>
+
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>
